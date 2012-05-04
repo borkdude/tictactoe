@@ -46,10 +46,10 @@
   (let [diag-coords [[[0 0] [1 1] [2 2]]
                      [[0 2] [1 1] [2 0]]]]
     (boolean (some (fn [coords] 
-            (every? (fn [coord] 
-                      (= player (apply get-board-cell board coord))) 
-                    coords))
-          diag-coords))))
+                     (every? (fn [coord] 
+                               (= player (apply get-board-cell board coord))) 
+                             coords))
+                   diag-coords))))
 
 (defn winner?
 "checks if there is a winner. when called with no args, checks for player X and player O.
