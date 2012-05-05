@@ -25,7 +25,7 @@
            [:table 
             (map-indexed (fn [rownum row]
                            (row-html rownum row with-submit?)) 
-                         (tictactoe/get-board))]))
+                         board)]))
   
 (defpartial play-screen []
   [:div 
