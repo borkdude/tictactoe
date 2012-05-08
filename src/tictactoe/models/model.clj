@@ -1,5 +1,5 @@
 (ns tictactoe.models.model
-  [require noir.session :as session])
+  (:require [noir.session :as session]))
 
 (def empty-board [[\- \- \-]
                   [\- \- \-]
@@ -7,7 +7,7 @@
 
 (def init-state {:board empty-board :player \X})
 
-(def ^{:private true} game-state (atom init-state))
+#_(def ^{:private true} game-state (atom init-state))
 
 (defn reset-game! []
   (session/put! :game-state init-state)
