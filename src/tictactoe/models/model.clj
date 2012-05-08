@@ -1,4 +1,5 @@
-(ns tictactoe.models.model)
+(ns tictactoe.models.model
+  [require noir.session :as session])
 
 (def empty-board [[\- \- \-]
                   [\- \- \-]
@@ -9,10 +10,12 @@
 (def ^{:private true} game-state (atom init-state))
 
 (defn reset-game! []
-  (reset! game-state init-state))
+  (session/put! :game-state init-state)
+  #_(reset! game-state init-state))
 
 (defn get-board []
-  (:board @game-state))
+  #_(:board @game-state)
+  (:board (session/get :game-state)))
 
 (defn get-board-cell 
   ([row col]
@@ -21,14 +24,19 @@
     (get-in board [row col])))
 
 (defn get-player []
-  (:player @game-state))
+  #_(:player @game-state)
+  (:player (session/get :game-state)))
 
 (defn other-player []
     (if (= (get-player) \X) \O \X))
 
 (defn play! [row col]
   (when (= (get-board-cell (get-board) row col) \-)
-      (swap! game-state assoc 
+      (session/put! :game-state
+        (assoc (session/get :game-state)
+               :board (assoc-in (get-board) [row col] (get-player))
+               :player (other-player)))
+      #_(swap! game-state assoc 
              :board 
              (assoc-in (get-board) [row col] (get-player))
              :player (other-player))))
