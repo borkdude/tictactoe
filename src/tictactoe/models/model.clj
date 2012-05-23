@@ -67,3 +67,4 @@ returns the character for the winning player, nil if there is no winner"
   ([] (full-board? (get-board)))
   ([board] (let [all-cells (apply concat board)]
              (not-any? #(= % \-) all-cells))))
+
