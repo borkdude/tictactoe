@@ -7,14 +7,10 @@
 
 (def init-state {:board empty-board :player \X})
 
-#_(def ^{:private true} game-state (atom init-state))
-
 (defn reset-game! []
-  (session/put! :game-state init-state)
-  #_(reset! game-state init-state))
+  (session/put! :game-state init-state))
 
 (defn get-board []
-  #_(:board @game-state)
   (:board (session/get :game-state)))
 
 (defn get-board-cell 
@@ -24,7 +20,6 @@
     (get-in board [row col])))
 
 (defn get-player []
-  #_(:player @game-state)
   (:player (session/get :game-state)))
 
 (defn other-player []
@@ -35,11 +30,7 @@
       (session/put! :game-state
         (assoc (session/get :game-state)
                :board (assoc-in (get-board) [row col] (get-player))
-               :player (other-player)))
-      #_(swap! game-state assoc 
-             :board 
-             (assoc-in (get-board) [row col] (get-player))
-             :player (other-player))))
+               :player (other-player)))))
   
 (defn winner-in-rows? [board player]
   (boolean (some (fn [row] (every? (fn [c] (= c player)) row)) board)))
@@ -71,14 +62,6 @@ returns the character for the winning player, nil if there is no winner"
             (winner-in-cols? board player)
             (winner-in-diagonals? board player))
       player)))
-
-#_(defn full-board?
-  ([] (full-board? (get-board)))
-  ([board] (every? (fn [row]
-                     (every? (fn [elt]
-                               (not (= elt \-)))
-                             row))
-                   board)))
 
 (defn full-board?
   ([] (full-board? (get-board)))
