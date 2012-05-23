@@ -23,15 +23,15 @@
   (:player (session/get :game-state)))
 
 (defn other-player []
-    (if (= (get-player) \X) \O \X))
+  (if (= (get-player) \X) \O \X))
 
 (defn play! [row col]
   (when (= (get-board-cell (get-board) row col) \-)
-      (session/put! :game-state
-        (assoc (session/get :game-state)
-               :board (assoc-in (get-board) [row col] (get-player))
-               :player (other-player)))))
-  
+    (session/put! :game-state
+                  (assoc (session/get :game-state)
+                         :board (assoc-in (get-board) [row col] (get-player))
+                         :player (other-player)))))
+
 (defn winner-in-rows? [board player]
   (boolean (some (fn [row] (every? (fn [c] (= c player)) row)) board)))
 
@@ -51,7 +51,7 @@
                    diag-coords))))
 
 (defn winner?
-"checks if there is a winner. when called with no args, checks for player X and player O.
+  "checks if there is a winner. when called with no args, checks for player X and player O.
 returns the character for the winning player, nil if there is no winner"
   ([] (winner? (get-board)))
   ([board]
@@ -67,4 +67,3 @@ returns the character for the winning player, nil if there is no winner"
   ([] (full-board? (get-board)))
   ([board] (let [all-cells (apply concat board)]
              (not-any? #(= % \-) all-cells))))
-
