@@ -1,0 +1,12 @@
+/classes
+/target
+/bin
+.classpath
+
+.lein-deps-sum
+
+.project
+
+.settings/ccw.repl.cmdhistory.prefs
+
+.lein-failures
