@@ -1,7 +1,7 @@
-(ns tictactoe.test.models.model
-  (:use tictactoe.models.model)
+(ns tictactoe.test.model
+  (:use tictactoe.model)
   (:use clojure.test)
-  (:require [tictactoe.test.models.testdata :as td]))
+  (:require [tictactoe.test.testdata :as td]))
 
 (deftest get-board-cell-test
   (let [testboard [[\X \- \-]
@@ -51,21 +51,21 @@
       (is (= (full-board? board) false)
           (str "Board should not be considered full, but is: " board)))))
 
-;; this test should be rewritten according to switch to Noir sessions
-#_(deftest scenario1-test
+(deftest scenario1-test
   "it should not be possible to choose a cell that is already taken"
-  (reset-game!)
-  (play! 0 0)
-  (is (= (get-board-cell 0 0) \X))
-  (play! 0 1)
-  (is (= (get-board-cell 0 1) \O))
-  (play! 0 2)
-  (is (= (get-board-cell 0 2) \X))
-  (is (= (get-player) \O))
-  (play! 0 0)
-  (is (= (get-board-cell 0 0) \X) "value of cell 0 0 should still be X")
-  (is (= (get-player) \O) "player should still be O")
-  (reset-game!))
+  (binding [noir.session/*noir-session* (atom {})]
+    (reset-game!)
+    (play! 0 0)
+    (is (= (get-board-cell 0 0) \X))
+    (play! 0 1)
+    (is (= (get-board-cell 0 1) \O))
+    (play! 0 2)
+    (is (= (get-board-cell 0 2) \X))
+    (is (= (get-player) \O))
+    (play! 0 0)
+    (is (= (get-board-cell 0 0) \X) "value of cell 0 0 should still be X")
+    (is (= (get-player) \O) "player should still be O")
+    (reset-game!)))
 
 ;; exercise: add deftest for function winner?
 ;; exercise: macro for defining test scenarios which resets game automatically at beginning and end

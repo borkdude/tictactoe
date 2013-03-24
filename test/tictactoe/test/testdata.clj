@@ -1,4 +1,4 @@
-(ns tictactoe.test.models.testdata
+(ns tictactoe.test.testdata
   (:use clojure.set))
 
 (defn row-win-combinations [p]
