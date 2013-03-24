@@ -13,9 +13,9 @@
         rownr (Integer/parseInt (str (second button-id)))
         colnr (Integer/parseInt (str (nth button-id 2)))]
     (model/play! rownr colnr)
-    (if-let [winner (game/winner?)]
+    (if-let [winner (model/winner?)]
       (view/winner-screen winner)
-      (if (game/full-board?)
+      (if (model/full-board?)
         (view/draw-screen)
         (view/play-screen)))))
 
