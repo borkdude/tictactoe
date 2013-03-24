@@ -1,4 +1,4 @@
-(ns tictactoe.models.model
+(ns tictactoe.model
   (:require [noir.session :as session]))
 
 (def empty-board [[\- \- \-]
