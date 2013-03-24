@@ -5,15 +5,10 @@
                  [compojure "1.1.5"]
                  [ring-server "0.2.7"]
                  [hiccup "1.0.2"]]
-  :ring {:handler tictactoe/handler.war-handler,
-         :init tictactoe.handler/init,
-         :destroy tictactoe.handler/destroy}
+  :ring {:handler tictactoe/handler.war-handler}
   :profiles {:production
              {:ring
-              {:open-browser? false, :stacktraces? false, :auto-reload? false}},
-             :dev
-             {:dependencies [[ring-mock "0.1.3"] [ring/ring-devel "1.1.8"]]}}
-  :url "http://example.com/FIXME"
+              {:open-browser? false, :stacktraces? false, :auto-reload? false}}}
   :plugins [[lein-ring "0.8.3"]]
   :min-lein-version "2.0.0")
 
