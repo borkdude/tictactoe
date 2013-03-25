@@ -5,7 +5,7 @@
                  [compojure "1.1.5"]
                  [ring-server "0.2.7"]
                  [hiccup "1.0.2"]]
-  :ring {:handler tictactoe/handler.war-handler}
+  :ring {:handler tictactoe.handler/war-handler}
   :profiles {:production
              {:ring
               {:open-browser? false, :stacktraces? false, :auto-reload? false}}}
