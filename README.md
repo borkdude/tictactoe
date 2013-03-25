@@ -1,5 +1,6 @@
-Tictactoe: a simple server based game built with Ring, Compojure, lib-noir and Hiccup.
+Tictactoe
 =========
+A simple server based game built with Ring, Compojure, lib-noir and Hiccup.
 
 To run: 
 
