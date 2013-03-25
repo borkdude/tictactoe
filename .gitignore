@@ -10,3 +10,5 @@
 .settings/ccw.repl.cmdhistory.prefs
 
 .lein-failures
+
+.lein-repl-history
