@@ -8,6 +8,8 @@ A simple server based game built with [Ring](https://github.com/ring-clojure), [
     $ cd tictactoe
     $ lein ring server
     
+A browser window will open and you'll be able to play.
+
 # Run tests:    
 
     $ lein test
@@ -18,4 +20,11 @@ A simple server based game built with [Ring](https://github.com/ring-clojure), [
     $ git push heroku master    
 
 More, see [Heroku](https://blog.heroku.com/archives/2011/7/5/clojure_on_heroku).
+
+# TODO or student assignments
+
+* Make a ClojureScript variation of this game. How much of the code can be
+re-used?
+* Add Kerodon tests
+* Add AI so player can play against the computer
 
