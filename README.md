@@ -1,6 +1,11 @@
 Tictactoe
 =========
-A simple server based game built with [Ring](https://github.com/ring-clojure), [Compojure](https://github.com/weavejester/compojure), [lib-noir](https://github.com/noir-clojure/lib-noir) and [Hiccup](https://github.com/weavejester/hiccup).
+A simple server based game built with
+[Ring](https://github.com/ring-clojure),
+[Compojure](https://github.com/weavejester/compojure),
+[lib-noir](https://github.com/noir-clojure/lib-noir) and
+[Hiccup](https://github.com/weavejester/hiccup). The project template
+was borrowed from [Luminus](http://www.luminusweb.net/). 
 
 # Download and run: 
 
