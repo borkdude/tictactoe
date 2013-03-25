@@ -12,7 +12,10 @@ A simple server based game built with [Ring](https://github.com/ring-clojure), [
 
     $ lein test
 
-Deploy to Heroku:
+# Deploy to Heroku:
 
-TODO
+    $ heroku create --stack cedar
+    $ git push heroku master    
+
+More, see [Heroku](https://blog.heroku.com/archives/2011/7/5/clojure_on_heroku).
 
