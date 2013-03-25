@@ -27,4 +27,4 @@ More, see [Heroku](https://blog.heroku.com/archives/2011/7/5/clojure_on_heroku).
 re-used?
 * Add Kerodon tests
 * Add AI so player can play against the computer
-
+* Think of more stuff to do
