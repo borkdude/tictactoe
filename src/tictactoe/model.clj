@@ -22,15 +22,9 @@
 (defn get-player []
   (:player (session/get :game-state)))
 
-(defn other-player []
-  (if (= (get-player) \X) \O \X))
-
-(defn play! [row col]
-  (when (= (get-board-cell (get-board) row col) \-)
-    (session/put! :game-state
-                  (assoc (session/get :game-state)
-                         :board (assoc-in (get-board) [row col] (get-player))
-                         :player (other-player)))))
+(defn other-player 
+  ([] (other-player (get-player)))
+  ([player] (if (= player \X) \O \X))) 
 
 (defn winner-in-rows? [board player]
   (boolean (some (fn [row] (every? (fn [c] (= c player)) row)) board)))
@@ -55,8 +49,8 @@
 returns the character for the winning player, nil if there is no winner"
   ([] (winner? (get-board)))
   ([board]
-    (or (winner? board \X)
-        (winner? board \O)))
+    (boolean (or (winner? board \X)
+                 (winner? board \O))))
   ([board player]
     (if (or (winner-in-rows? board player)
             (winner-in-cols? board player)
@@ -68,4 +62,14 @@ returns the character for the winning player, nil if there is no winner"
   ([board] (let [all-cells (apply concat board)]
              (not-any? #(= % \-) all-cells))))
 
-;;; comments 
+(defn new-state [row col old-state]
+  (if (and (= (get-board-cell (:board old-state) row col) \-)
+           (not (winner? (:board old-state))))
+    {:board (assoc-in (:board old-state) [row col] (:player old-state))
+     :player (other-player (:player old-state))}
+    old-state))
+
+(defn play! [row col]
+  (session/swap! (fn [session-map]
+                   (assoc session-map :game-state 
+                          (new-state row col (:game-state session-map))))))

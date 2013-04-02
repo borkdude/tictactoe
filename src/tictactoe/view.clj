@@ -31,7 +31,7 @@
             (map-indexed (fn [rownum row]
                            (row-html rownum row with-submit?)) 
                          board)]))
-  
+
 (defn play-screen []
   (layout
     [:div 
